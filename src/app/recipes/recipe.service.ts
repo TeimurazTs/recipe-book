@@ -8,20 +8,12 @@ import { Subject } from 'rxjs';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Tasty Schnitzel',
-      'Super Tasty Schnitzel',
-      'https://www.ocado.com/cmscontent/recipe_image_large/39454258.jpg?cqyk',
-      [new Ingredient('Meat', 1), new Ingredient('french fries', 20)]
-    ),
-    new Recipe(
-      'Big Fat Burger',
-      'What else could you say?',
-      'https://www.ocado.com/cmscontent/recipe_image_large/39454258.jpg?cqyk',
-      [new Ingredient('Buns', 2), new Ingredient('Meat', 1)]
-    ),
-  ];
+  private recipes: Recipe[] = [];
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 
   constructor(private slService: ShoppingListService) {}
 
