@@ -14,6 +14,7 @@ export interface AuthResponseData {
   kind: string;
   localId: string;
   refreshToken: string;
+  
   registered?: boolean;
 }
 
